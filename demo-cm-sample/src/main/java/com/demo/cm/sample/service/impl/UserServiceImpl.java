@@ -1,7 +1,9 @@
 package com.demo.cm.sample.service.impl;
 
-import com.demo.cm.sample.model.User;
-import com.demo.cm.sample.service.UserService;
+import com.demo.cm.model.User;
+import com.demo.cm.sample.mapper.UserMapper;
+import com.demo.cm.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,12 +15,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
-    public User getUser() {
-        User user = new User();
-        user.setId(1);
-        user.setName("user1");
-        user.setAddress("China");
-        return user;
+    public User getUserById(Integer id) {
+        return userMapper.getUserById(id);
     }
 }

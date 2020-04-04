@@ -1,0 +1,14 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev #默认为开发环境
+  #发布应用程序配置
+  application:
+    name: demo-cm-sample
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel-case:  true

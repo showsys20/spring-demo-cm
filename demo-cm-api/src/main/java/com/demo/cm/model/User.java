@@ -1,6 +1,8 @@
-package com.demo.cm.sample.model;
+package com.demo.cm.model;
 
 import lombok.Data;
+
+import java.util.Date;
 
 /**
  * @author ：changxxx
@@ -11,6 +13,9 @@ import lombok.Data;
 @Data
 public class User {
     private Integer id;
-    private String name;
+    private String userName;
     private String address;
+    private Date createTime;
+    private Date updateTime;
+    private Integer status;
 }

@@ -1,6 +1,7 @@
-package com.demo.cm.sample.service;
+package com.demo.cm.service;
 
-import com.demo.cm.sample.model.User;
+
+import com.demo.cm.model.User;
 
 /**
  * @author ：changxxx
@@ -9,5 +10,5 @@ import com.demo.cm.sample.model.User;
  * @modified By：
  */
 public interface UserService {
-    User getUser();
+    User getUserById(Integer id);
 }
