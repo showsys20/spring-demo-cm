@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <description>Demo project for Spring Boot</description>
     <modules>
+        <module>demo-cm-common</module>
         <module>demo-cm-sample</module>
         <module>demo-cm-api</module>
     </modules>
