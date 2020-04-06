@@ -38,7 +38,7 @@ public class LoggerAspectj {
 //        Annotation nologgingAnno = ((Class)types[0]).getAnnotation(Nologging.class); // type是所有类型的父接口
 
         Method targetMethod = methodSignature.getMethod();
-        String methodName = targetMethod.getName();
+//        String methodName = targetMethod.getName();
         logger.info("============={}: start================", targetMethod);
         Object o = proceedingJoinPoint.proceed();
         long end = System.currentTimeMillis();
