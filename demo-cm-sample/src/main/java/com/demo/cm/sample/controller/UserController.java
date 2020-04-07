@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author ：changxxx
@@ -31,5 +32,10 @@ public class UserController {
         } else {
             throw new Exception("throwable" + new Date());
         }
+    }
+
+    @RequestMapping("/ano")
+    public List<User> ano(Integer id) throws Throwable {
+        return userService.getAno(id);
     }
 }
