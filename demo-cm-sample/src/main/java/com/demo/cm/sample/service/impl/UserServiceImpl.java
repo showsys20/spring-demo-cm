@@ -27,12 +27,33 @@ public class UserServiceImpl implements UserService {
         return userMapper.getUserById(id);
     }
 
+    @Override
+    public List<User> getUserByUser(User user) {
+        return userMapper.select(user);
+    }
+
     @MyLogger(message = "add", fallback = "createUser")
     @Override
     public List<User> getAno(Integer id) {
         List list = new ArrayList();
         list.add(userMapper.getUserById(id));
         return list;
+    }
+
+    @Override
+    public Integer saveUser(User user) {
+        return userMapper.insert(user);
+    }
+
+    @Override
+    public Integer saveUserList(List<User> userList) {
+        int count = 0;
+
+        for (User user : userList) {
+            count += userMapper.insert(user);
+        }
+
+        return count;
     }
 
     public User createUser(Integer id) {

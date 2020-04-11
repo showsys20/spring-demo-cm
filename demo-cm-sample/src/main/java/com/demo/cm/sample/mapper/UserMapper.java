@@ -2,6 +2,7 @@ package com.demo.cm.sample.mapper;
 
 import com.demo.cm.model.User;
 import org.apache.ibatis.annotations.Select;
+import tk.mybatis.mapper.common.Mapper;
 
 /**
  * @author ：changxxx
@@ -9,7 +10,7 @@ import org.apache.ibatis.annotations.Select;
  * @description：
  * @modified By：
  */
-public interface UserMapper {
+public interface UserMapper extends Mapper<User> {
     @Select("select * from user where id = #{id}")
     User getUserById(Integer id);
 }
