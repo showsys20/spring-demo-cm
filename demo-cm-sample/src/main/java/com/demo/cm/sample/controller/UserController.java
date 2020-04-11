@@ -27,7 +27,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/hello", method = {RequestMethod.GET})
+    @RequestMapping(value = "/hello", method = {RequestMethod.POST})
     public List<User> getUser(User user) {
         return userService.getUserByUser(user);
     }
@@ -51,7 +51,6 @@ public class UserController {
         if (password != 1024) {
             return 0;
         }
-        Integer count = 0;
         ThreadPoolExecutor poolExecutor = new ThreadPoolExecutor(10,
                 20, 1, TimeUnit.MINUTES,
                 new ArrayBlockingQueue<Runnable>(100000),
