@@ -3,6 +3,7 @@ package com.demo.cm.sample.controller;
 import com.demo.cm.model.User;
 import com.demo.cm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,13 +24,33 @@ import java.util.concurrent.TimeUnit;
  */
 @RestController
 public class UserController {
+    private static final String USER_KEY = "USER_INFO_";
 
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/hello", method = {RequestMethod.POST})
-    public List<User> getUser(User user) {
+    @Autowired
+    private RedisTemplate<String, User> redisTemplate;
+
+    @RequestMapping(value = "/hello", method = {RequestMethod.POST, RequestMethod.GET})
+    public List<User> getUserList(User user) {
         return userService.getUserByUser(user);
+    }
+
+    @RequestMapping(value = "/get", method = {RequestMethod.POST, RequestMethod.GET})
+    public User getUser(Integer id) {
+        if (id == null || id < 0) {
+            return null;
+        }
+        String key = USER_KEY + id;
+        User user = redisTemplate.opsForValue().get(key);
+        if (user == null) {
+            user = userService.getUserById(id);
+            if (user != null) {
+                redisTemplate.opsForValue().set(key, user, 30, TimeUnit.MINUTES);
+            }
+        }
+        return user;
     }
 
     @RequestMapping("/test")
